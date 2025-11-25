@@ -1,15 +1,35 @@
-// Archivo: /pages/api/sitemap.js
-
 const BASE_URL = "https://proyecto-seo-1.onrender.com";
- // ← luego lo cambiarás por tu URL real de Render
 
-export default function handler(req, res) {
-  const urls = ["/", "/blog", "/contacto"]; // Aquí agregas más rutas
+// Simulación de datos desde una BD o CMS
+async function getDynamicRoutes() {
+  return [
+    { slug: "post-1" },
+    { slug: "post-2" },
+    { slug: "post-3" },
+  ];
+}
+
+export default async function handler(req, res) {
+  const staticUrls = ["/", "/blog", "/contacto"];
+
+  const dynamicPosts = await getDynamicRoutes();
+
+  const dynamicUrls = dynamicPosts.map(
+    (post) => `/blog/${post.slug}`
+  );
+
+  const allUrls = [...staticUrls, ...dynamicUrls];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${urls
-      .map((url) => `<url><loc>${BASE_URL}${url}</loc></url>`)
+    ${allUrls
+      .map(
+        (url) => `
+      <url>
+        <loc>${BASE_URL}${url}</loc>
+        <changefreq>weekly</changefreq>
+      </url>`
+      )
       .join("")}
   </urlset>`;
 
