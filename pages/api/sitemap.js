@@ -1,6 +1,7 @@
 // Archivo: /pages/api/sitemap.js
 
-const BASE_URL = "https://midominio-render.com"; // ← luego lo cambiarás por tu URL real de Render
+const BASE_URL = "https://proyecto-seo-1.onrender.com";
+ // ← luego lo cambiarás por tu URL real de Render
 
 export default function handler(req, res) {
   const urls = ["/", "/blog", "/contacto"]; // Aquí agregas más rutas

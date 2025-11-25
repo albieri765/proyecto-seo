@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://midominio-render.com/api/sitemap
+
+Sitemap: https://proyecto-seo-1.onrender.com/api/sitemap
